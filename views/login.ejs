@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>login page</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+       
+            <h1> log in to timline system! </h1>
+            </hr>
+        
+        <form action="/" method="POST">
+           <h2>Post a message</h2>
+            <input type="text" placeholder="first name" name="first_name" />
+            <input type="text" placeholder="last name" name="last_name" />
+            <input type="email" placeholder="email" name="email" />
+            <input type="password" placeholder="password" name="password" />
+            <button>create a user</button>
+        </form>
+        <div class="data">
+        <% if(result) { %>
+            <h1 class="result"> <%= result %> </h1>
+        <% } %>
+        
+          <% if(alluser.length > 0) { 
+                alluser.forEach( user => { %>
+                <h5> <%= user.first_name %> - <%= user.last_name %> </h5>
+                <% }) %>
+                 
+            <% } else { %>
+                <h3 class="err"> No user found </h3>
+            <% } %>
+            </div>
+        
+    </body>
+</html>

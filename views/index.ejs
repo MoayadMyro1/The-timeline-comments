@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EJS</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+       
+            <h1> Timeline </h1>
+            </hr>
+          
+        
+        <form action="/" method="POST">
+           <h2>Post a message</h2>
+            <textarea name="message" row='3' ></textarea>
+            <button>Post a message</button>
+        </form>
+        <div class="data">
+
+          <% if(allmessages.length > 0) { 
+                allmessages.forEach( msg => { %>
+                <h5> <%= msg.userName %> - <%= msg.created_at.toDateString() %></h5>
+                <p><%= msg.message %></p>
+                    <div class="comment"> 
+                        <% if(msg.Comments.length > 0) { 
+                           msg.Comments.forEach( comment => { %>
+                           <h5> <%= comment.userName %> - <%= comment.created_at.toDateString() %></h5>
+                           <p><%= comment.comment %></p>
+                        <% }) %>
+                        <% } else { %>
+                              <h3 class="err"> No comment for this post. </h3>
+                        <% } %>
+                 <form action="/addcomment/?msg_id=<%= msg._id %>" method="POST">
+                 <textarea name="comment" row='3' ></textarea>
+                 <button>Post a comment</button>
+                 </form>
+                    </div>
+                <% }) %>
+                 
+            <% } else { %>
+                <h3 class="err"> No messages found </h3>
+            <% } %>
+            </div>
+        
+    </body>
+</html>
